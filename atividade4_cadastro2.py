@@ -18,7 +18,7 @@ class Cadastro:
         return f'  NOME: {self.nome}\n  EMAIL: {self.email}\n  CPF: {(self.cpf).strip()[0:3]}.{(self.cpf).strip()[3:6]}.{(self.cpf).strip()[6:9]}-{(self.cpf).strip()[9:11]}\n  NACIONALIDADE: {self.nacionalidade}\n  ANIVERSÁRIO: {self.data_formatada}'
 
 
-def espaço_em_branco(p):
+def centralizar(p):
     print('{: ^45}'.format(p))
 
 def risquinhos(p):
@@ -30,7 +30,7 @@ pessoa = 1
 risquinhos('')
 risquinhos(' BEM-VINDO ')
 risquinhos('')
-espaço_em_branco('')
+print('')
 
 conta_bruna = Cadastro('Bruna', 'bruna@bruna.com', '12345678900', 'Brasileira', 22, 7, 2003)
 conta_vanette = Cadastro('Vanette', 'vanette@vanette.com', '54511561565', 'Brasileira', 15, 5, 1967)
@@ -43,7 +43,6 @@ conta_yasmyn = Cadastro('Yasmyn', 'yasmyn@yasmyn.com', '64548793123', 'Brasileir
 conta_amanda = Cadastro('Amanda', 'amanda@amanda.com', '01547564589', 'Brasileira', 5, 8, 2001)
 conta_natalia = Cadastro('Natália', 'natalia@natalia.com', '99521534862', 'Brasileira', 25, 10, 1995)
 
-
 contas = [conta_amanda, conta_brenda, conta_bruna, conta_gabriel, conta_margo, conta_natalia, conta_nicole, conta_teka , conta_vanette, conta_yasmyn]
 
 numero = 1
@@ -54,7 +53,8 @@ while True:
         numero += 1
 
     while not (numero_solicidade := input('\n  Digite o número que deseje ver os detalhes: ')).isdigit() or (numero_solicidade := int(numero_solicidade)) > 10 or (numero_solicidade := int(numero_solicidade)) <= 0:
-        print('\n  Por favor, digite um número válido.')
+        print('')
+        centralizar('  Por favor, digite um número válido.')
 
     if numero_solicidade == 1:
         print(f'\n{conta_amanda}\n')
