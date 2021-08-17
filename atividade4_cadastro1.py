@@ -17,7 +17,7 @@ class Cadastro:
     def __str__(self):
         return f'  NOME: {self.nome}\n  EMAIL: {self.email}\n  CPF: {(self.cpf).strip()[0:3]}.{(self.cpf).strip()[3:6]}.{(self.cpf).strip()[6:9]}-{(self.cpf).strip()[9:11]}\n  NACIONALIDADE: {self.nacionalidade}\n  ANIVERSÁRIO: {self.data_formatada}'
 
-def espaço_em_branco(p):
+def centralizar(p):
     print('{: ^45}'.format(p))
 
 def risquinhos(p):
@@ -28,33 +28,33 @@ pessoa = 1
 
 risquinhos('')
 risquinhos(' BEM-VINDO ')
-espaço_em_branco(' você poderá cadastrar até 10 pessoas ')
+centralizar(' você poderá cadastrar até 10 pessoas ')
 
 while quantidade <= 10:
     risquinhos('')
-    espaço_em_branco('')
+    print('')
 
     nome = str(input('  Insira o seu nome: ')).title()
     email = input('  Insira seu email: ').lower()
     while not (cpf := input('  Insira seu CPF: ')).isdigit():
-        espaço_em_branco('Por favor, insira um valor válido!')
+        centralizar('Por favor, insira um valor válido!')
     while (nacionalidade := (input('  Insira sua nacionaliade: ').title())).isdigit():
-        espaço_em_branco('Insira uma nacionalidade válida!')
+        centralizar('Insira uma nacionalidade válida!')
     while not (dia := input('  Insira o dia do seu aniversário: ')).isdigit() or (dia := int(dia)) <= 0 or (dia := int(dia)) > 31:
-        espaço_em_branco('Insira um valor válido!')
+        centralizar('Insira um valor válido!')
     while not (mes := input('  Insira o mês do seu aniversário: ')).isdigit() or (mes := int(mes)) <= 0 or (mes := int(mes)) > 12:
-        espaço_em_branco('Insira um valor válido!')
+        centralizar('Insira um valor válido!')
     while not (ano := input('  Insira o ano do seu aniversário: ')).isdigit() or (ano := int(ano)) < 1900 or (ano := int(ano)) > 2021:
-        espaço_em_branco('Insira um valor válido!')
+        centralizar('Insira um valor válido!')
     espaço_em_branco('')
 
     risquinhos('')
-    espaço_em_branco('')
-    espaço_em_branco(f'——— PESSOA {pessoa} ———')
-    espaço_em_branco('')
+    print('')
+    centralizar(f'——— PESSOA {pessoa} ———')
+    print('')
     conta = Cadastro(nome, email, cpf, nacionalidade, dia, mes, ano)
     print(conta)
-    espaço_em_branco('')
+    print('')
     
     pessoa += 1
     quantidade += 1
