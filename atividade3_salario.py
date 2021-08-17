@@ -28,7 +28,7 @@ def linhas(texto):
     print('{:—^45}'.format(texto))
 
 def pula_linha():
-    print('{: ^45}'.format(''))
+    print('')
 
 def erro():
     pula_linha()
