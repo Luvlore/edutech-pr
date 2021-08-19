@@ -18,7 +18,6 @@ def formatacao(texto):
 listagem =  ["Misto-Quente", "Cachorro-Quente", "Coxinha", "Hamburgão", "X-Burguer","X-Salada", "X-Tudo", 'Refrigerante', 'Suco', 'Água', 'Água c/Gás', 'Café', 'Café c/Leite']
 codigos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 precos = [3, 4.5, 3, 3.5, 6, 7.5, 14, 5.5, 4.5, 2, 2, 3, 3]
-nada = ''
 
     #título
 risquinhos()
@@ -29,7 +28,7 @@ risquinhos()
 print(f'  LISTA\t\t     CÓDIGOS\t\t PREÇOS\n')
 for pos in range(0, len(listagem)):
     print(f'  {listagem[pos]:.<20}', end='')
-    print(f' {1+codigos[pos]:03}',f'{nada:.<13}',end='')
+    print(f' {1+codigos[pos]:03}','.'*13, end='')
     print(f' R${precos[pos]:0.2f}')
     #valores
 valor_total = 0
