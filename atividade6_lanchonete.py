@@ -31,21 +31,27 @@ for pos in range(0, len(listagem)):
     print(f'  {listagem[pos]:.<20}', end='')
     print(f' {1+codigos[pos]:03}','.'*13, end='')
     print(f' R${precos[pos]:0.2f}')
+pula_linha()
+
     #valores
 valor_total = 0
 valor_item = 0
 
     #execução do código
 while True:
+
     risquinhos()
-    while not (codigo := input(' Digite o código do que deseja comprar ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) > 13:
+    while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) not in codigos:
         formatacao('Por favor, digite um valor válido.')
+
+    if codigo == 0:
+        break
     formatacao(f'Você escolheu {listagem[codigo-1]}')
     
     while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 0:
         formatacao('Por favor, digite um valor válido.')
 
-    if codigo or quantidade == 0:
+    if quantidade == 0:
         break
     
     for pos in range(0, len(codigos)):
@@ -60,9 +66,11 @@ while True:
     if resp == 'N':
         break
 
+    #final
 if valor_item > 0:
     risquinhos()
     pula_linha()
     centralizado(f'Valor Total: R${valor_total:.2f}')
     pula_linha()
+
 formatacao('FIM DO PROGRAMA')
