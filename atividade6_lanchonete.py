@@ -7,6 +7,7 @@ def centralizado(texto):
 
 def pula_linha():
     print('')
+
 def formatacao(texto):
     risquinhos()
     pula_linha()
@@ -37,11 +38,13 @@ valor_item = 0
     #execução do código
 while True:
     risquinhos()
-    while not (codigo := input(' Digite o código do que deseja comprar: ')).isdigit() or (codigo := int(codigo)) < 1 or (codigo := int(codigo)) > 13:
+    while not (codigo := input(' Digite o código do que deseja comprar ou digite 0 para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) > 13:
         formatacao('Por favor, digite um valor válido.').upper()
+    if codigo == 0:
+        break
     formatacao(f'Você escolheu {listagem[codigo-1]}')
     
-    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 0:
+    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 1:
         formatacao('Por favor, digite um valor válido.').upper()
     
     for pos in range(0, len(codigos)):
@@ -56,4 +59,9 @@ while True:
     if resp == 'N':
         break
 
-formatacao(f'Valor Total: R${valor_total:.2f}')
+if valor_item > 0:
+    risquinhos()
+    pula_linha()
+    centralizado(f'Valor Total: R${valor_total:.2f}')
+    pula_linha()
+formatacao('FIM DO PROGRAMA')
