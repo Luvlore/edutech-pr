@@ -38,14 +38,15 @@ valor_item = 0
     #execução do código
 while True:
     risquinhos()
-    while not (codigo := input(' Digite o código do que deseja comprar ou digite 0 para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) > 13:
-        formatacao('Por favor, digite um valor válido.').upper()
-    if codigo == 0:
-        break
+    while not (codigo := input(' Digite o código do que deseja comprar ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) > 13:
+        formatacao('Por favor, digite um valor válido.')
     formatacao(f'Você escolheu {listagem[codigo-1]}')
     
-    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 1:
-        formatacao('Por favor, digite um valor válido.').upper()
+    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 0:
+        formatacao('Por favor, digite um valor válido.')
+
+    if codigo or quantidade == 0:
+        break
     
     for pos in range(0, len(codigos)):
         if (codigo == pos+1):
