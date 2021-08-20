@@ -1,9 +1,9 @@
     #funções para deixar a excução do código show
 def risquinhos():
-    print("—"*49)
+    print("—"*50)
 
 def centralizado(texto):
-    print(f'{texto:^49}')
+    print(f'{texto:^50}')
 
 def pula_linha():
     print('')
@@ -16,22 +16,8 @@ def formatacao(texto):
     risquinhos()
 
     #variáveis
-listagem =  ["Misto-Quente", "Cachorro-Quente", "Coxinha", "Hamburgão", "X-Burguer","X-Salada", "X-Tudo", 'Refrigerante', 'Suco', 'Água', 'Água c/Gás', 'Café', 'Café c/Leite']
-codigos = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+listagem =  ['Misto-Quente', 'Cachorro-Quente', 'Coxinha', 'Hamburgão', 'X-Burguer','X-Salada', 'X-Tudo', 'Refrigerante', 'Suco', 'Água', 'Água c/Gás', 'Café', 'Café c/Leite']
 precos = [3, 4.5, 3, 3.5, 6, 7.5, 14, 5.5, 4.5, 2, 2, 3, 3]
-
-    #título
-risquinhos()
-centralizado("CARDÁPIO DA LANCHONETE")
-risquinhos()
-
-    #cardápio
-print(f'  LISTA\t\t     CÓDIGOS\t\t PREÇOS\n')
-for pos in range(0, len(listagem)):
-    print(f'  {listagem[pos]:.<20}', end='')
-    print(f' {1+codigos[pos]:03}','.'*13, end='')
-    print(f' R${precos[pos]:0.2f}')
-pula_linha()
 
     #valores
 valor_total = 0
@@ -39,22 +25,35 @@ valor_item = 0
 
     #execução do código
 while True:
+        #título
+    risquinhos()
+    centralizado("CARDÁPIO DA LANCHONETE")
+    risquinhos()
+
+    #cardápio
+    print(f'  LISTA\t\t     CÓDIGOS\t\t  PREÇOS\n')
+    for codigo, pos in enumerate(range(0, len(listagem))):
+        print(f'  {listagem[pos]:.<20}', f'{codigo + 1:03}','.'*13, f'R${precos[pos]:5.2f}')
+    pula_linha()
 
     risquinhos()
-    while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) < 0 or (codigo := int(codigo)) not in codigos:
+    while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) not in list(range(len(listagem)+1)):
         formatacao('Por favor, digite um valor válido.')
 
     if codigo == 0:
+        risquinhos()
         break
+
     formatacao(f'Você escolheu {listagem[codigo-1]}')
     
     while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 0:
         formatacao('Por favor, digite um valor válido.')
 
     if quantidade == 0:
+        risquinhos()
         break
     
-    for pos in range(0, len(codigos)):
+    for pos in range(0, len(listagem)):
         if (codigo == pos+1):
             valor_item = precos[pos] * quantidade
     formatacao(f' Valor do Item: R${valor_item:.2f}')
@@ -68,9 +67,7 @@ while True:
 
     #final
 if valor_item > 0:
-    risquinhos()
-    pula_linha()
-    centralizado(f'Valor Total: R${valor_total:.2f}')
-    pula_linha()
+    formatacao(f'Valor Total: R${valor_total:.2f}')
 
-formatacao('FIM DO PROGRAMA')
+centralizado('FIM DO PROGRAMA')
+risquinhos()
