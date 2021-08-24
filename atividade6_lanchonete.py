@@ -16,8 +16,7 @@ def formatacao(texto):
     risquinhos()
 
     #variáveis
-listagem =  ['Misto-Quente', 'Cachorro-Quente', 'Coxinha', 'Hamburgão', 'X-Burguer','X-Salada', 'X-Tudo', 'Refrigerante', 'Suco', 'Água', 'Água c/Gás', 'Café', 'Café c/Leite']
-precos = [3, 4.5, 3, 3.5, 6, 7.5, 14, 4.5, 3.5, 2, 2, 3, 3]
+listagem =  {'Misto-Quente': 3, 'Cachorro-Quente': 4.5, 'Coxinha': 3, 'Hamburgão': 3.5, 'X-Burguer': 6,'X-Salada': 7.5, 'X-Tudo': 14, 'Refrigerante': 4.5, 'Suco': 3.5, 'Água': 2, 'Água c/Gás': 2, 'Café': 3, 'Café c/Leite': 3}
 
     #valores
 valor_total = 0
@@ -32,8 +31,8 @@ while True:
 
     #cardápio
     print(f'  LISTA\t\t     CÓDIGOS\t\t   PREÇOS\n')
-    for codigo, pos in enumerate(range(len(listagem))):
-        print(f'  {listagem[pos]:.<20}', f'{codigo + 1:03}','.'*13, f'R${precos[pos]:6.2f}')
+    for codigo, (alim, preco) in enumerate(listagem.items()):
+        print(f'  {alim:.<20}', f'{codigo + 1:03}','.'*13, f'R${preco:6.2f}')
     pula_linha()
 
     risquinhos()
@@ -44,7 +43,9 @@ while True:
         risquinhos()
         break
 
-    formatacao(f'Você escolheu {listagem[codigo-1]}')
+    for pos, alim in enumerate(listagem.keys()):
+        if codigo == pos + 1:
+            formatacao(f'Você escolheu {alim}')
     
     while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).strip().isdigit() or (quantidade := int(quantidade)) < 0:
         formatacao('Por favor, digite um valor válido.')
@@ -53,9 +54,9 @@ while True:
         risquinhos()
         break
     
-    for pos in range(0, len(listagem)):
-        if (codigo == pos+1):
-            valor_item = precos[pos] * quantidade
+    for pos, preco in enumerate(listagem.values()):
+        if codigo == pos+1:
+            valor_item = preco * quantidade
     formatacao(f' Valor do Item: R${valor_item:.2f}')
     valor_total += valor_item
     
