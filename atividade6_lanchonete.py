@@ -1,9 +1,9 @@
     #funções para deixar a excução do código show
 def risquinhos():
-    print("—"*50)
+    print('—'*51)
 
 def centralizado(texto):
-    print(f'{texto:^50}')
+    print(f'{texto:^51}')
 
 def pula_linha():
     print('')
@@ -17,7 +17,7 @@ def formatacao(texto):
 
     #variáveis
 listagem =  ['Misto-Quente', 'Cachorro-Quente', 'Coxinha', 'Hamburgão', 'X-Burguer','X-Salada', 'X-Tudo', 'Refrigerante', 'Suco', 'Água', 'Água c/Gás', 'Café', 'Café c/Leite']
-precos = [3, 4.5, 3, 3.5, 6, 7.5, 14, 5.5, 4.5, 2, 2, 3, 3]
+precos = [3, 4.5, 3, 3.5, 6, 7.5, 14, 4.5, 3.5, 2, 2, 3, 3]
 
     #valores
 valor_total = 0
@@ -27,17 +27,17 @@ valor_item = 0
 while True:
         #título
     risquinhos()
-    centralizado("CARDÁPIO DA LANCHONETE")
+    centralizado('CARDÁPIO DA LANCHONETE')
     risquinhos()
 
     #cardápio
-    print(f'  LISTA\t\t     CÓDIGOS\t\t  PREÇOS\n')
-    for codigo, pos in enumerate(range(0, len(listagem))):
-        print(f'  {listagem[pos]:.<20}', f'{codigo + 1:03}','.'*13, f'R${precos[pos]:5.2f}')
+    print(f'  LISTA\t\t     CÓDIGOS\t\t   PREÇOS\n')
+    for codigo, pos in enumerate(range(len(listagem))):
+        print(f'  {listagem[pos]:.<20}', f'{codigo + 1:03}','.'*13, f'R${precos[pos]:6.2f}')
     pula_linha()
 
     risquinhos()
-    while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).isdigit() or (codigo := int(codigo)) not in list(range(len(listagem)+1)):
+    while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).strip().isdigit() or (codigo := int(codigo)) not in list(range(len(listagem) + 1)):
         formatacao('Por favor, digite um valor válido.')
 
     if codigo == 0:
@@ -46,7 +46,7 @@ while True:
 
     formatacao(f'Você escolheu {listagem[codigo-1]}')
     
-    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).isdigit() or (quantidade := int(quantidade)) < 0:
+    while not (quantidade := input(' Digite a quantidade que deseja comprar: ')).strip().isdigit() or (quantidade := int(quantidade)) < 0:
         formatacao('Por favor, digite um valor válido.')
 
     if quantidade == 0:
