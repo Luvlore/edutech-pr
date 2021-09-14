@@ -1,41 +1,23 @@
-    #funções para deixar a excução do código show
-def risquinhos():
-    print('—'*51)
+from atividade6_lista import listagem
+from funcoes_de_formatacao import centralizado, formatacao, pula_linha, risquinhos, limpa_tela
 
-def centralizado(texto):
-    print(f'{texto:^51}')
-
-def pula_linha():
-    print('')
-
-def formatacao(texto):
-    risquinhos()
-    pula_linha()
-    centralizado(texto)
-    pula_linha()
-    risquinhos()
-
-    #variáveis
-listagem =  {'Misto-Quente': 3, 'Cachorro-Quente': 4.5, 'Coxinha': 3, 'Hamburgão': 3.5, 'X-Burguer': 6,'X-Salada': 7.5, 'X-Tudo': 14, 'Refrigerante': 4.5, 'Suco': 3.5, 'Água': 2, 'Água c/Gás': 2, 'Café': 3, 'Café c/Leite': 3}
-
-    #valores
+# valores
 valor_total = 0
 valor_item = 0
 
-    #execução do código
+# execução do código
 while True:
-        #título
+    # título
     risquinhos()
     centralizado('CARDÁPIO DA LANCHONETE')
     risquinhos()
-
-    #cardápio
+    # cardápio
     print(f'  LISTA\t\t     CÓDIGOS\t\t   PREÇOS\n')
     for codigo, (alim, preco) in enumerate(listagem.items()):
-        print(f'  {alim:.<20}', f'{codigo + 1:03}','.'*13, f'R${preco:6.2f}')
+        print(f'  {alim:.<20}', f'{codigo + 1:03}','.'* 13, f'R${preco:6.2f}')
     pula_linha()
-
     risquinhos()
+
     while not (codigo := input(' Digite o código do que deseja comprar\n Ou digite 0 a qualquer momento para cancelar: ')).strip().isdigit() or (codigo := int(codigo)) not in list(range(len(listagem) + 1)):
         formatacao('Por favor, digite um valor válido.')
 
@@ -66,7 +48,9 @@ while True:
     if resp == 'N':
         break
 
-    #final
+    limpa_tela()
+
+# final
 if valor_item > 0:
     formatacao(f'Valor Total: R${valor_total:.2f}')
 
